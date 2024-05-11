@@ -1,12 +1,12 @@
 {
   "manifest_version": 2,
-  "name": "Leefbaarheidswidget",
+  "name": "Leefbaarometer voor Funda",
   "version": "1.0",
 
   "description": "Een widget die de leefbaarheid van een buurt weergeeft op Funda.",
 
   "icons": {
-    "48": "icons/icon48.png"
+    "96": "icons/icon96.png"
   },
 
   "content_scripts": [
