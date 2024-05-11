@@ -1,18 +1,18 @@
 {
-    "manifest_version": 2,
-    "name": "Leefbaarheidswidget",
-    "version": "1.0",
+  "manifest_version": 2,
+  "name": "Leefbaarheidswidget",
+  "version": "1.0",
 
-    "description": "Een widget die de leefbaarheid van een buurt weergeeft op Funda.",
+  "description": "Een widget die de leefbaarheid van een buurt weergeeft op Funda.",
 
-    "icons": {
-        "48": "icons/icon48.png"
-    },
+  "icons": {
+    "48": "icons/icon48.png"
+  },
 
-    "content_scripts": [
-        {
-            "matches": ["*://www.funda.nl/*"],
-            "js": ["extension.js"]
-        }
-    ]
+  "content_scripts": [
+    {
+      "matches": ["*://www.funda.nl/detail*"],
+      "js": ["extension.js"]
+    }
+  ]
 }
