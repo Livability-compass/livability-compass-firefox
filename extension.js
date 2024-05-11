@@ -14,23 +14,27 @@
   let neighbourhood = new Neighbourhood(buurt);
   let data = await neighbourhood.getData();
 
-  let template = `<div style="display: flex; flex-wrap: wrap; align-items: stretch; justify-content: space-between;">`;
+  if (!data) {
+    container.innerHTML = `<div>Geen leefbaarheidsgegevens gevonden voor ${buurt}.</div>`;
+  } else {
+    let template = `<div style="display: flex; flex-wrap: wrap; align-items: stretch; justify-content: space-between;">`;
 
-  for (let i = 0; i < data.length; i++) {
-    template += await data[i].toNode();
+    for (let i = 0; i < data.length; i++) {
+      template += await data[i].toNode();
 
-    if (i < data.length - 1) {
-      template += `<div style="width: 1px; background-color: #ededed"></div>`;
+      if (i < data.length - 1) {
+        template += `<div style="width: 1px; background-color: #ededed"></div>`;
+      }
     }
+
+    template += `</div>`;
+
+    template += `
+      <a target="_blank" href="https://leefbaarometer.nl/home.php" class="text-secondary-70 hover:text-secondary-70-darken-1 flex gap-2 font-normal">Bron: Leefbaarometer</a>
+    `;
+
+    container.innerHTML += template;
   }
-
-  template += `</div>`;
-
-  template += `
-    <a target="_blank" href="https://leefbaarometer.nl/home.php" class="text-secondary-70 hover:text-secondary-70-darken-1 flex gap-2 font-normal">Bron: Leefbaarometer</a>
-  `;
-
-  container.innerHTML += template;
 
   targetContainer.prepend(container);
 })();
