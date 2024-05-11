@@ -8,11 +8,27 @@ class Dimension {
     return this;
   }
 
+  getScoreColor() {
+    if (this.score < -1.5) return "#CE3137"; // Zeer grote negatieve afwijking
+    if (this.score < -1) return "#A7335D"; // Grote negatieve afwijking
+    if (this.score < -0.5) return "#803482"; // Negatieve afwijking
+    if (this.score < -0.25) return "#5836A8"; // Kleine negatieve afwijking
+    if (this.score < 0.25) return "#3137CE"; // Geen afwijking
+    if (this.score < 0.5) return "#335DA7"; // Kleine positieve afwijking
+    if (this.score < 1) return "#348280"; // Positieve afwijking
+    if (this.score < 1.5) return "#36A858"; // Grote positieve afwijking
+    return "#37CE31"; // Zeer grote positieve afwijking
+  }
+
   toNode() {
-    const triangleCSS =
+    let triangleCSS =
       this.score < 0
-        ? "border-top: 12px solid red;"
-        : "border-bottom: 12px solid green;";
+        ? `border-top: 12px solid ${this.getScoreColor()};`
+        : `border-bottom: 12px solid ${this.getScoreColor()};`;
+
+    if (this.score < 0.25 && this.score > -0.25) {
+      triangleCSS = `border: 6px solid ${this.getScoreColor()}; border-radius: 100%;`;
+    }
 
     return `
       <div id="${this.key}" style="display: flex; flex-direction: column; gap: 2px;">
