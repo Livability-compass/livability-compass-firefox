@@ -1,6 +1,6 @@
 class Dimension {
   constructor(key, text, score) {
-    this.score = score;
+    this.score = score * 10;
     this.text = text;
     this.scoreRounded = Number(Math.round(this.score + "e2") + "e-2");
     this.key = key.trim().replace(/\s/g, "_");
