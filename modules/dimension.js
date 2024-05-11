@@ -28,8 +28,6 @@ class Dimension {
     if (this.scoreRounded > 1) icon = "high-three";
     if (this.scoreRounded > 1.5) icon = "high-four";
 
-    console.log(icon, this.scoreRounded, this.text, this.key);
-
     const response = await fetch(
       browser.extension.getURL(`assets/${icon}.svg`)
     );
