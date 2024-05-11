@@ -25,9 +25,9 @@ const render = async (postalCode, targetContainer, standalone = true) => {
 
     template += `</div>`;
 
-    template += `<div style="display: flex; justify-content: space-between;">
-      <span class="text-neutral-40">Op basis van postcodegebied ${postalCode.getPostalCode()}</span>
+    template += `<div style="display: flex; gap: 12px;">
       <a target="_blank" href="https://leefbaarometer.nl/home.php" class="text-secondary-70 hover:text-secondary-70-darken-1 flex gap-2 font-normal">Bron: Leefbaarometer</a>
+      <span class="text-neutral-40">Op basis van postcodegebied ${postalCode.getPostalCode()}</span>
     </div>`;
 
     container.innerHTML += template;
