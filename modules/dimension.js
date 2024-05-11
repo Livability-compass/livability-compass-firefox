@@ -31,9 +31,7 @@ class Dimension {
   }
 
   async getSvg(name) {
-    const response = await fetch(
-      browser.extension.getURL(`assets/${name}.svg`)
-    );
+    const response = await fetch(browser.runtime.getURL(`assets/${name}.svg`));
 
     return await response.text();
   }

@@ -6,7 +6,7 @@ class Neighbourhood {
   }
 
   async getData() {
-    const response = await fetch(browser.extension.getURL("dataset.json"));
+    const response = await fetch(browser.runtime.getURL("dataset.json"));
     const data = await response.json();
 
     const filteredData = data.filter((row) => row.bu_naam === this.name);
