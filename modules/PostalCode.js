@@ -1,6 +1,13 @@
 class PostalCode {
   constructor(postalCode) {
     this.postalCode = postalCode;
+    this.data = [
+      new Dimension("environment", "Fysieke omgeving", null),
+      new Dimension("nuisance", "Overlast", null),
+      new Dimension("socialCohesion", "Sociale samenhang", null),
+      new Dimension("services", "Voorzieningen", null),
+      new Dimension("housingSupply", "Woningaanbod", null),
+    ];
   }
 
   getPostalCode() {
@@ -21,12 +28,14 @@ class PostalCode {
       return undefined;
     }
 
-    return [
+    this.data = [
       new Dimension("environment", "Fysieke omgeving", postalCodeData.fys),
       new Dimension("nuisance", "Overlast", postalCodeData.onv),
       new Dimension("socialCohesion", "Sociale samenhang", postalCodeData.soc),
       new Dimension("services", "Voorzieningen", postalCodeData.vrz),
       new Dimension("housingSupply", "Woningaanbod", postalCodeData.won),
     ];
+
+    return this.data;
   }
 }
