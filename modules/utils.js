@@ -61,5 +61,5 @@ const render = async (postalCode, targetContainer) => {
     container.innerHTML += template;
   }
 
-  targetContainer.prepend(container);
+  targetContainer.insertBefore(container, targetContainer.childNodes[1]);
 };
