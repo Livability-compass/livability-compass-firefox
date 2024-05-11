@@ -35,7 +35,7 @@ const getPostalCodeFromPage = () => {
           postalCode.getData().then(() => {
             render(postalCode, targetContainer);
           });
-        }, 200);
+        }, 300);
       }
     });
   });
