@@ -11,6 +11,8 @@ const getPostalCodeFromPage = () => {
     `[data-test-id="postal-code-city"]`
   )[0];
 
+  if (!postalCode) return;
+
   return postalCode.textContent.replace(/\D+/g, "").trim();
 };
 
