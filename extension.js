@@ -13,7 +13,7 @@
   let data = await neighbourhood.getData();
 
   for (let i = 0; i < data.length; i++) {
-    container.innerHTML += data[i].toNode();
+    container.innerHTML += await data[i].toNode();
 
     if (i < data.length - 1) {
       container.innerHTML += `<div style="width: 1px; background-color: #ededed"></div>`;

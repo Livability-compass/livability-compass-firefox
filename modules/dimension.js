@@ -9,32 +9,44 @@ class Dimension {
   }
 
   getScoreColor() {
-    if (this.score < -1.5) return "#CE3137"; // Zeer grote negatieve afwijking
-    if (this.score < -1) return "#A7335D"; // Grote negatieve afwijking
-    if (this.score < -0.5) return "#803482"; // Negatieve afwijking
-    if (this.score < -0.25) return "#5836A8"; // Kleine negatieve afwijking
-    if (this.score < 0.25) return "#3137CE"; // Geen afwijking
-    if (this.score < 0.5) return "#335DA7"; // Kleine positieve afwijking
-    if (this.score < 1) return "#348280"; // Positieve afwijking
-    if (this.score < 1.5) return "#36A858"; // Grote positieve afwijking
-    return "#37CE31"; // Zeer grote positieve afwijking
+    if (this.score >= 0.25) return "#37CE31";
+
+    if (this.score <= -0.25) return "#CE3137";
+
+    return "#3137CE";
   }
 
-  toNode() {
-    let triangleCSS =
-      this.score < 0
-        ? `border-top: 12px solid ${this.getScoreColor()};`
-        : `border-bottom: 12px solid ${this.getScoreColor()};`;
+  async getScoreIcon() {
+    let icon = "equal";
 
-    if (this.score < 0.25 && this.score > -0.25) {
-      triangleCSS = `border: 6px solid ${this.getScoreColor()}; border-radius: 100%;`;
-    }
+    if (this.scoreRounded < -0.25) icon = "low";
+    if (this.scoreRounded < -1) icon = "low-three";
+    if (this.scoreRounded < -0.5) icon = "low-two";
+    if (this.scoreRounded < -1.5) icon = "low-four";
+    if (this.scoreRounded > 0.25) icon = "high";
+    if (this.scoreRounded > 0.5) icon = "high-two";
+    if (this.scoreRounded > 1) icon = "high-three";
+    if (this.scoreRounded > 1.5) icon = "high-four";
+
+    console.log(icon, this.scoreRounded, this.text, this.key);
+
+    const response = await fetch(
+      browser.extension.getURL(`assets/${icon}.svg`)
+    );
+
+    return await response.text();
+  }
+
+  async toNode() {
+    this.getScoreIcon();
 
     return `
-      <div id="${this.key}" style="display: flex; flex-direction: column; gap: 2px;">
+      <div id="${
+        this.key
+      }" style="display: flex; flex-direction: column; gap: 2px;">
         <span class="text-neutral-50 md:inline-block">${this.text}</span>
-        <div style="display: flex; gap: 6px; align-items: center;">
-          <div style="width: 0; height: 0; border-left: 7px solid transparent; border-right: 7px solid transparent; ${triangleCSS}"></div>
+        <div style="display: flex; gap: 6px; align-items: center; color: ${this.getScoreColor()}">
+          ${await this.getScoreIcon()}
           <span class="font-bold">${this.scoreRounded}</span>
         </div>
       </div>`;
