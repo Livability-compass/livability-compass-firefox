@@ -13,7 +13,7 @@ const render = async (postalCode, targetContainer, standalone = true) => {
   if (!postalCode.data) {
     container.innerHTML = `<div>Geen leefbaarheidsgegevens gevonden voor postcode gebied ${postalCode.getPostalCode()}.</div>`;
   } else {
-    let template = `<div style="display: flex; align-items: stretch; justify-content: space-between; gap: 12px;">`;
+    let template = `<div style="display: flex; align-items: stretch; justify-content: start; gap: 12px;">`;
 
     for (let i = 0; i < postalCode.data.length; i++) {
       template += await postalCode.data[i].toNode();
