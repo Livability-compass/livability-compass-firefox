@@ -33,5 +33,5 @@ const render = async (postalCode, targetContainer, standalone = true) => {
     container.innerHTML += template;
   }
 
-  targetContainer.insertBefore(container, targetContainer.childNodes[0]);
+  targetContainer.insertBefore(container, targetContainer.childNodes[1]);
 };
