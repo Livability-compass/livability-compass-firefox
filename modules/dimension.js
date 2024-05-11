@@ -18,7 +18,7 @@ class Dimension {
       <div id="${this.key}" style="display: flex; flex-direction: column; gap: 2px;">
         <span class="text-neutral-50 md:inline-block">${this.text}</span>
         <div style="display: flex; gap: 6px; align-items: center;">
-          <div style="width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; ${triangleCSS}"></div>
+          <div style="width: 0; height: 0; border-left: 7px solid transparent; border-right: 7px solid transparent; ${triangleCSS}"></div>
           <span class="font-bold">${this.scoreRounded}</span>
         </div>
       </div>`;
