@@ -16,22 +16,16 @@ const getTargetContainerFromPage = () => {
   return element;
 };
 
-const getNeighbourhoodFromPage = () => {
-  // New details page
-  let element = document.getElementsByClassName(
-    "ml-2 text-secondary-70 hover:text-secondary-70-darken-1"
-  )[0];
+const getPostalCodeFromPage = () => {
+  let postalCode = undefined;
 
-  // Old details page
-  if (!element) {
-    element = document.getElementsByClassName(
-      "fd-m-left-2xs--bp-m fd-display-block fd-display-inline--bp-m"
-    )[0];
-  }
+  // Detail pages
+  const regex = /\d{4} [A-Z]{2}/;
+  const match = document.title.match(regex)[0];
 
-  if (!element) {
-    return undefined;
-  }
+  postalCode = match;
 
-  return element.innerText;
+  postalCode = postalCode.replace(/\s/g, "").slice(0, -2);
+
+  return postalCode;
 };

@@ -14,8 +14,8 @@
       "matches": ["*://www.funda.nl/*"],
       "js": [
         "modules/utils.js",
-        "modules/neighbourhood.js",
-        "modules/dimension.js",
+        "modules/PostalCode.js",
+        "modules/Dimension.js",
         "extension.js"
       ]
     }
