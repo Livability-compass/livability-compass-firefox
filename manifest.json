@@ -12,7 +12,7 @@
   "content_scripts": [
     {
       "matches": ["*://www.funda.nl/detail*"],
-      "js": ["extension.js"]
+      "js": ["modules/neighbourhood.js", "modules/dimension.js", "extension.js"]
     }
   ]
 }
