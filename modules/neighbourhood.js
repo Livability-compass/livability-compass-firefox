@@ -15,8 +15,6 @@ class Neighbourhood {
 
     const neighbourhoodData = sortedData[0];
 
-    console.log(this.name);
-
     return [
       new Dimension("environment", "Fysieke omgeving", neighbourhoodData.fys),
       new Dimension("nuisance", "Overlast", neighbourhoodData.onv),
