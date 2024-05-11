@@ -11,12 +11,25 @@
 
   "content_scripts": [
     {
-      "matches": ["*://www.funda.nl/*"],
+      "matches": ["*://www.funda.nl/zoeken/kaart/*"],
       "js": [
         "modules/utils.js",
         "modules/PostalCode.js",
         "modules/Dimension.js",
-        "extension.js"
+        "map.js"
+      ]
+    },
+    {
+      "matches": [
+        "*://www.funda.nl/detail/*",
+        "*://www.funda.nl/koop/*",
+        "*://www.funda.nl/huur/*"
+      ],
+      "js": [
+        "modules/utils.js",
+        "modules/PostalCode.js",
+        "modules/Dimension.js",
+        "details.js"
       ]
     }
   ]

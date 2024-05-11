@@ -1,47 +1,19 @@
-const getTargetContainerFromPage = () => {
-  // New details page
-  let element = document.getElementsByClassName(
-    "mt-4 px-4 lg:mt-6 lg:w-[70%] lg:pr-6"
-  )[0];
-
-  // Old details page
-  if (!element) {
-    element = document.getElementsByClassName("object-primary")[0];
-  }
-
-  if (!element) {
-    return undefined;
-  }
-
-  return element;
-};
-
-const getPostalCodeFromPage = () => {
-  let postalCode = undefined;
-
-  // Detail pages
-  const regex = /\d{4} [A-Z]{2}/;
-  const match = document.title.match(regex)[0];
-
-  postalCode = match;
-
-  postalCode = postalCode.replace(/\s/g, "").slice(0, -2);
-
-  return postalCode;
-};
-
-const render = async (postalCode, targetContainer) => {
+const render = async (postalCode, targetContainer, standalone = true) => {
   document.getElementById("leefbaarometer")?.remove();
 
   let container = document.createElement("div");
   container.id = "leefbaarometer";
 
-  container.style = `display: flex; flex-direction: column; gap: 8px; padding-bottom: 1rem; margin-bottom: 1rem; border-bottom: 1px solid #ededed`;
+  if (standalone) {
+    container.style = `display: flex; flex-direction: column; gap: 8px; padding: 1rem;`;
+  } else {
+    container.style = `display: flex; flex-direction: column; gap: 8px; padding-bottom: 1rem; margin-bottom: 1rem; border-bottom: 1px solid #ededed`;
+  }
 
   if (!postalCode.data) {
     container.innerHTML = `<div>Geen leefbaarheidsgegevens gevonden voor postcode gebied ${postalCode.getPostalCode()}.</div>`;
   } else {
-    let template = `<div style="display: flex; flex-wrap: wrap; align-items: stretch; justify-content: space-between;">`;
+    let template = `<div style="display: flex; align-items: stretch; justify-content: space-between; gap: 12px;">`;
 
     for (let i = 0; i < postalCode.data.length; i++) {
       template += await postalCode.data[i].toNode();
@@ -61,5 +33,5 @@ const render = async (postalCode, targetContainer) => {
     container.innerHTML += template;
   }
 
-  targetContainer.insertBefore(container, targetContainer.childNodes[1]);
+  targetContainer.insertBefore(container, targetContainer.childNodes[0]);
 };

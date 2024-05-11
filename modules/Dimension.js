@@ -43,7 +43,9 @@ class Dimension {
       <div id="${
         this.key
       }" style="display: flex; flex-direction: column; gap: 2px;">
-        <span class="text-neutral-50 md:inline-block">${this.text}</span>
+        <span class="text-neutral-50 md:inline-block" style="text-overflow: ellipsis;">${
+          this.text
+        }</span>
         <div style="display: flex; gap: 6px; align-items: center; color: ${this.getScoreColor()}">
           ${svg}
           <span class="font-bold">${this.scoreRounded}</span>
