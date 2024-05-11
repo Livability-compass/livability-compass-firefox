@@ -8,7 +8,7 @@ class PostalCode {
   }
 
   async getData() {
-    const response = await fetch(browser.runtime.getURL("dataset.json"));
+    const response = await fetch(browser.runtime.getURL("data/pc4.json"));
     const data = await response.json();
 
     const filteredData = data.filter((row) => row.PC4 == this.postalCode);
